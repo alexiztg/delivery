@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+canvas{
+    border: 8px solid blue;
+    background-color: rgba(68, 25, 144, 0.494);
+}
+
+.fondoGame{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../img/fondo.jfif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

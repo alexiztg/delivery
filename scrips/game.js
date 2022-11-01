@@ -48,16 +48,30 @@ p2.src = "../img/piedra/2.gif"
 p3.src = "../img/piedra/3.gif"
 const piedraSprites = [p0, p1, p2, p3]
 
+//Cargar pizza 
+const pizza0 = new Image()
+const pizza1 = new Image()
+const pizza2 = new Image()
+const pizza3 = new Image()
+pizza0.src = "../img/pizza/0.gif"
+pizza1.src = "../img/pizza/1.gif"
+pizza2.src = "../img/pizza/2.gif"
+pizza3.src = "../img/pizza/3.gif" 
+const pizzaSprites = [pizza0, pizza1, pizza2, pizza3]
+
+
+//Cargar imagen explosion
+const explosion = new Image()
+explosion.src = "../img/boom/0.gif"
+
 
 //medidas canvas
 //ancho 1000, alto 600
 
-
 //Lista de enemigos y de piedras
-
 const enemigos = []
-const piedras = []
-
+const piedrasArreglo = []
+const pizzaArreglo = []
 
  
  //definir personaje
@@ -73,24 +87,40 @@ const piedras = []
     }
     // metodo adelante
     adelante(){
+        //Delimitar rango de movimiento 
+        if (this.posicionX + 200 < 1000 ){
         //sumarle a su posicion en X
-        this.posicionX = this.posicionX + 10
+        this.posicionX = this.posicionX + 25
+        }
+        
     }
     //metodo atras
     atras(){
-        this.posicionX = this.posicionX - 10
+        //Delimitar rango de movimiento 
+        if (this.posicionX > 0 ){
+        this.posicionX = this.posicionX - 25
+        }
     }
     //metodo subir
     subir(){
-        this.posicionY = this.posicionY - 10
+        //Delimitar rango de movimiento 
+        if (this.posicionY > 0 ){
+        this.posicionY = this.posicionY - 25
+        }
     }
     //metodo bajar
     bajar(){
-        this.posicionY = this.posicionY + 10
+        if (this.posicionY + 110 < 600){
+        this.posicionY = this.posicionY + 25
+        }
     }
     //metodo brincar 
     brincar(){
         console.log("brincar");
+        this.posicionY = this.posicionY - 52
+        setTimeout(()=>{
+            this.posicionY = this.posicionY + 52
+        },4000)
     }
     //metodo dibujarse bici
     dibujarse(){
@@ -107,13 +137,11 @@ const piedras = []
     //metodo dispara
     disparar(){
         console.log("disparo");
-        // if (piedras.length<2){
-        //     const piedra = new Piedra(ctx, personaje.posicionX + 110 , 500, p0)
-        //     //Agregamos al arreglo
-        //     piedras.push(piedra)
-        // }
-        
-
+        if (piedrasArreglo.length<10){
+            const piedra = new Piedra(ctx, personaje.posicionX + 110 , personaje.posicionY + 50, p0)
+            //Agregamos al arreglo
+            piedrasArreglo.push(piedra)
+        }
     } 
  }
 
@@ -136,12 +164,31 @@ const piedras = []
         }
     //dibujarse enemigo
         dibujarse(){
+            this.imagen = carSprites [contadorSprites]
             this.ctx.drawImage(this.imagen, this.posicionX, this.posicionY,300,300)
         }
     }
 
-//Crear enemigo --posicion en x & y, tambien la iteracion de las imagenes
-    const Enemigo = new Enemy(ctx, 1000, 350, e0)
+//Definir pizza
+class Pizza{
+    //recibe el ctx para dibujarse
+        constructor(ctx, posicionX, posicionY, imagen){
+            this.posicionX = posicionX
+            this.posicionY= posicionY
+            this.ctx = ctx
+            this.imagen = imagen
+        }
+    //atras
+        atras(){
+            this.posicionX = this.posicionX - 10
+        }
+    //dibujarse pizza
+        dibujarse(){
+            this.imagen = pizzaSprites [contadorSprites]
+            this.ctx.drawImage(this.imagen, this.posicionX, this.posicionY,100,100)
+        }
+    }    
+
 
 //Definir piedra
 class Piedra{
@@ -154,15 +201,18 @@ class Piedra{
         }
     //adelante
         adelante(){
-            this.posicionX = this.posicionX + 10
+            this.posicionX = this.posicionX + 30
         }
     //dibujarse piedra
         dibujarse(){
+            
+            //Colocar imagenes piedra   
+            this.imagen = piedraSprites [contadorSprites]
             this.ctx.drawImage(this.imagen, this.posicionX, this.posicionY, 50, 50)
         }
     }  
     
-    const piedra = new Piedra(ctx, personaje.posicionX , 500, p0)
+    //const piedra = new Piedra(ctx, personaje.posicionX , 500, p0)
     
 
 //Contador para conteo de imagenes    
@@ -177,29 +227,130 @@ class Piedra{
         personaje.dibujarse()
         actualizarSprites()
 
-        //Enemigo   
-        Enemigo.atras()
-        Enemigo.dibujarse()
+        
+        //Recorrer el arreglo de los enemigos y por cada uno dibujarlo y agregarle en x
+        enemigos.forEach((enemigo, posicionEnemigo)=>{
+            enemigo.atras()
+            enemigo.dibujarse()
+             //Verificar colosion en X de carro y bici
+            
+             //Debemos preguntar X Y
+             //console.log(personaje.posicionX, enemigo.posicionX);
+            if (enemigo.posicionX  <= personaje.posicionX + 87 &&
+
+                enemigo.posicionX  >= personaje.posicionX &&
+                
+                //cabeza biker           llantas carro
+                personaje.posicionY <= enemigo.posicionY + 180 &&
+
+                //llantas bici         toldo carro
+                personaje.posicionY -50 >= enemigo.posicionY
+                ){
+                // alert("Esta chocando en X & Y")
+                // console.log("X...", personaje.posicionX, enemigo.posicionX);
+                // console.log("Y...",personaje.posicionY, enemigo.posicionY);
+                
+                //personaje pierde vida
+                personaje.perderVida()
+                //Quitar enemigo en el array
+                //con el metodo SPLICE el cual nos pide un arreglo y la cantidad a quitar
+                enemigos.splice(posicionEnemigo, 1)
+
+                // //Preguntar si sigue vivo
+                if (personaje.vidas == 0){
+                    //Aqui va el Game Over
+                    alert("GAME OVER")
+                    console.log("Se murio");
+                }
+            }
+        })
+
+
+        //Recorrer el arreglo de las pizzas y por cada una dibujar una pizza y agregarla en x
+        pizzaArreglo.forEach((pizza, posicionPizza)=>{
+            pizza.atras()
+            pizza.dibujarse()
+             //Verificar colosion en X de carro y bici
+            
+             //Debemos preguntar X Y
+             //console.log(personaje.posicionX, pizza.posicionX);
+            if (pizza.posicionX  <= personaje.posicionX + 110 &&
+
+                pizza.posicionX  >= personaje.posicionX &&
+                
+                //cabeza biker           base pizza
+                personaje.posicionY <= pizza.posicionY + 50 &&
+
+                //llantas bici         arriba pizza
+                personaje.posicionY + 40 >= pizza.posicionY
+                ){
+                // alert("Esta chocando en X & Y")
+                // console.log("X...", personaje.posicionX, pizza.posicionX);
+                // console.log("Y...",personaje.posicionY, pizza.posicionY);
+                
+                //personaje pierde vida
+                personaje.perderVida()
+                //Quitar pizza en el array
+                //con el metodo SPLICE el cual nos pide un arreglo y la cantidad a quitar
+                pizzaArreglo.splice(posicionPizza, 1)
+
+                // //Preguntar si sigue vivo
+                if (personaje.vidas == 0){
+                    //Aqui va el Game Over
+                    alert("GAME OVER")
+                    console.log("Se murio");
+                }
+            }
+        })
 
         //Recorrer el arreglo de las piedras y por cada uno dibujarlo y agregarle en x
         //Piedra
-        piedras.forEach((piedra)=>{
+        piedrasArreglo.forEach((piedra, indexPiedra)=>{
             console.log("piedras");
             piedra.adelante()
             piedra.dibujarse()
-        })
-        
 
-        //Verificar colosion en X de carro y bici
-          //console.log(personaje.posicionX, Enemigo.posicionX);
-        if (Enemigo.posicionX  <= personaje.posicionX + 87){
-            //alert("Esta chocando en X")
-            //personaje pierde vida
-            personaje.perderVida()
+            //Piedra vs Carro
+            console.log("pX",piedra.posicionX);
+            enemigos.forEach((enemigo, indexEnemigo)=>{
+                console.log("eX",enemigo.posicionX);
+                if (piedra.posicionX >=enemigo.posicionX){
+                    //Quitamos piedra
+                    piedrasArreglo.splice(indexPiedra,1)
+                    //Quitar carro
+                    enemigos.splice(indexEnemigo, 1)
+                }
+            })
+        })
+
+        
+    },100)
+
+//Crear enemigos y ppizza de manera aleatoria
+    setInterval (()=>{
+        //Enemigo   
+        // Enemigo.atras()
+        // Enemigo.dibujarse()
+
+        //Crear enemigo --posicion en x & y, tambien la iteracion de las imagenes
+        //Math.random()
+        if(Math.floor(Math.random()* 2) == 1){
+            //Salir desde cualquier lugar en la posicion Y
+            const altura = Math.floor(Math.random() * 350)
+
+            const Enemigo = new Enemy(ctx, 1000, altura, e0)
+            enemigos.push(Enemigo)
+            console.log(enemigos);
+
+            //Pizza 
+            const alturaPizza = Math.floor(Math.random() * 350)   
+            const PizzaRandom = new Pizza(ctx, 1000, alturaPizza, e0)
+            pizzaArreglo.push(PizzaRandom)
+            console.log(pizzaArreglo);
         }
 
+    },2000)
 
-    },100)
 
  //escuchar el teclado
     window.addEventListener("keyup", (evento)=>{
@@ -234,31 +385,26 @@ class Piedra{
         //Colocar imagenes bici    
         personaje.imagen = bikerSprites [contadorSprites]
         //Ciclo para conteo de imagenes bici
-        if (contadorSprites < 7){
+        if (contadorSprites < 3){
             contadorSprites ++
         }else{
             contadorSprites = 0
         }
     
-        //Colocar imagenes carro   
-        Enemigo.imagen = carSprites [contadorSprites]
-        //Ciclo para conteo de imagenes carro
-        if (contadorSprites < 3){
-            contadorSprites ++
-        }else{
-            contadorSprites = 0
-        }    
-
-
-        //Colocar imagenes piedra   
-        // piedra.imagen = piedraSprites [contadorSprites]
-        // //Ciclo para conteo de imagenes piedra
+        // //Colocar imagenes carro   
+        // Enemigo.imagen = carSprites [contadorSprites]
+        // //Ciclo para conteo de imagenes carro
         // if (contadorSprites < 3){
         //     contadorSprites ++
         // }else{
         //     contadorSprites = 0
         // }    
-        
 
     }
+
+
+    
+
+        
+    
 

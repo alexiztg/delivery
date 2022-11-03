@@ -6,6 +6,7 @@ const canvas = document.querySelector("canvas")
 
  //Manipulacion del DOM
  const gameOver = document.getElementById("gameOver");
+ const win = document.getElementById("win");
 
 //Modificar propiedades del txt 
  ctx.font = "24px Arial"
@@ -285,6 +286,7 @@ class Piedra{
         timer = 0
         timer1 = 0
         gameOver.classList.add("noShow")
+        win.classList.add("noShow") 
         personaje.posicionX = 40
         personaje.posicionY = 450
 
@@ -372,7 +374,7 @@ class Piedra{
                         // console.log("Ganaste");
                         clearInterval(intervalId);
                         clearInterval(intervalEnemigos);
-                        gameOver.classList.remove("noShow");
+                        win.classList.remove("noShow");
                     }
                 }
             })

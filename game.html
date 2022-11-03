@@ -15,13 +15,26 @@
     <!-- Canvas -->
         <canvas width="1000" height="600" id="canvas"></canvas>
     
-        <!-- modal -->
+        <!-- modal Game Over-->
     <div class="gameOver noShow" id="gameOver">
         <!-- contenido del modal -->
         <div class="modal-content">
-            <button onclick="iniciarJuego()">Reiniciar</button>
+            <img class="center" src="./img/gameOver/GAMEOVER.gif" class="columna">
+            <button onclick="iniciarJuego()" class="columna-doble">Reiniciar</button>
+            <button onclick="window.location.href='index.html';" class="columna-doble">.:Menu:.</button>
         </div>    
     </div>
+
+    <!-- modal Win-->
+    <div class="gameOver noShow" id="win">
+        <!-- contenido del modal -->
+        <div class="modal-content">
+            <img src="./img/win/you-win.gif" class="columna">
+            <button onclick="iniciarJuego()" class="columna-doble">Reiniciar</button>
+            <button onclick="window.location.href='index.html';" class="columna-doble">.:Menu:.</button>
+        </div>    
+    </div>
+
     </div>
     
 

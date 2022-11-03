@@ -21,14 +21,14 @@ const t4 = new Image()
 const t5 = new Image()
 const t6 = new Image()
 const t7 = new Image()
-t0.src = img/0.gif"
-t1.src = img/1.gif"
-t2.src = img/2.gif"
-t3.src = img/3.gif"
-t4.src = img/4.gif"
-t5.src = img/5.gif"
-t6.src = img/6.gif"
-t7.src = img/7.gif"
+t0.src = "./img/0.gif"
+t1.src = "./img/1.gif"
+t2.src = "./img/2.gif"
+t3.src = "./img/3.gif"
+t4.src = "./img/4.gif"
+t5.src = "./img/5.gif"
+t6.src = "./img/6.gif"
+t7.src = "./img/7.gif"
 const bikerSprites = [t0, t1, t2, t3, t4, t5, t6, t7] 
 
 //Cargar las imagenes del enemigo
@@ -36,10 +36,10 @@ const e0 = new Image()
 const e1 = new Image()
 const e2 = new Image()
 const e3 = new Image()
-e0.src = "img/car/c0.gif"
-e1.src = "img/car/c1.gif"
-e2.src = "img/car/c2.gif"
-e3.src = "img/car/c3.gif"
+e0.src = "./img/car/c0.gif"
+e1.src = "./img/car/c1.gif"
+e2.src = "./img/car/c2.gif"
+e3.src = "./img/car/c3.gif"
 const carSprites = [e0, e1, e2, e3] 
 
 //Cargar imagen piedra
@@ -47,10 +47,10 @@ const p0 = new Image()
 const p1 = new Image()
 const p2 = new Image()
 const p3 = new Image()
-p0.src = "img/piedra/0.gif"
-p1.src = "img/piedra/1.gif"
-p2.src = "img/piedra/2.gif"
-p3.src = "img/piedra/3.gif"
+p0.src = "./img/piedra/0.gif"
+p1.src = "./img/piedra/1.gif"
+p2.src = "./img/piedra/2.gif"
+p3.src = "./img/piedra/3.gif"
 const piedraSprites = [p0, p1, p2, p3]
 
 //Cargar pizza 
@@ -58,10 +58,10 @@ const pizza0 = new Image()
 const pizza1 = new Image()
 const pizza2 = new Image()
 const pizza3 = new Image()
-pizza0.src = "img/pizza/0.gif"
-pizza1.src = "img/pizza/1.gif"
-pizza2.src = "img/pizza/2.gif"
-pizza3.src = "img/pizza/3.gif" 
+pizza0.src = "./img/pizza/0.gif"
+pizza1.src = "./img/pizza/1.gif"
+pizza2.src = "./img/pizza/2.gif"
+pizza3.src = "./img/pizza/3.gif" 
 const pizzaSprites = [pizza0, pizza1, pizza2, pizza3]
 
 
@@ -70,10 +70,10 @@ const explosion0 = new Image()
 const explosion1 = new Image()
 const explosion2 = new Image()
 const explosion3 = new Image()
-explosion0.src = "img/boom/0.gif"
-explosion1.src = "img/boom/1.gif"
-explosion2.src = "img/boom/2.gif"
-explosion3.src = "img/boom/3.gif"
+explosion0.src = "./img/boom/0.gif"
+explosion1.src = "./img/boom/1.gif"
+explosion2.src = "./img/boom/2.gif"
+explosion3.src = "./img/boom/3.gif"
 const explosionSpites = [explosion0, explosion1, explosion2, explosion3]
 
 

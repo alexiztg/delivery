@@ -284,7 +284,7 @@ class Piedra{
         personaje.puntuacion = 0
         timer = 0
         timer1 = 0
-        gameOver.classList.add("noShow1")
+        gameOver.classList.add("noShow")
         personaje.posicionX = 40
         personaje.posicionY = 450
 
@@ -329,7 +329,7 @@ class Piedra{
                         //Aqui va el Game Over
                         clearInterval(intervalId);
                         clearInterval(intervalEnemigos);
-                        gameOver.classList.remove("noShow1");
+                        gameOver.classList.remove("noShow");
                     }
                     if (enemigo.posicionX < 0){ 
                         enemigos.splice(posicionEnemigo, 1)
@@ -365,11 +365,14 @@ class Piedra{
                     //con el metodo SPLICE el cual nos pide un arreglo y la cantidad a quitar
                     pizzaArreglo.splice(posicionPizza, 1)
 
-                    // //Preguntar si sigue vivo
-                    if (personaje.puntuacion >= 100){
-                        //Aqui va el Game Over
-                        alert("Llegaste con el cliente")
-                        console.log("Ganaste");
+                    // //Preguntar si ya gano
+                    if (personaje.puntuacion >= 50){
+                        //Aqui va el Gane
+                        // alert("Llegaste con el cliente")
+                        // console.log("Ganaste");
+                        clearInterval(intervalId);
+                        clearInterval(intervalEnemigos);
+                        gameOver.classList.remove("noShow");
                     }
                 }
             })

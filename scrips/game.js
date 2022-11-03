@@ -21,14 +21,14 @@ const t4 = new Image()
 const t5 = new Image()
 const t6 = new Image()
 const t7 = new Image()
-t0.src = "img/0.gif"
-t1.src = "img/1.gif"
-t2.src = "img/2.gif"
-t3.src = "img/3.gif"
-t4.src = "img/4.gif"
-t5.src = "img/5.gif"
-t6.src = "img/6.gif"
-t7.src = "img/7.gif"
+t0.src = img/0.gif"
+t1.src = img/1.gif"
+t2.src = img/2.gif"
+t3.src = img/3.gif"
+t4.src = img/4.gif"
+t5.src = img/5.gif"
+t6.src = img/6.gif"
+t7.src = img/7.gif"
 const bikerSprites = [t0, t1, t2, t3, t4, t5, t6, t7] 
 
 //Cargar las imagenes del enemigo

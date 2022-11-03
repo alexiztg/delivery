@@ -4,8 +4,13 @@ const canvas = document.querySelector("canvas")
 //2.Definir el contexto 2D
  const ctx = canvas.getContext("2d")
 
+ //Manipulacion del DOM
+ const gameOver = document.getElementById("gameOver");
+
 //Modificar propiedades del txt 
  ctx.font = "24px Arial"
+ ctx.fillStyle = "white";
+
 
 //Cargar las imagenes bici
 const t0 = new Image()
@@ -79,10 +84,10 @@ const explosionSpites = [explosion0, explosion1, explosion2, explosion3]
 
 
 //Lista de enemigos y de piedras
-const enemigos = []
-const piedrasArreglo = []
-const pizzaArreglo = []
-const explosionArreglo = []
+let enemigos = []
+let piedrasArreglo = []
+let pizzaArreglo = []
+let explosionArreglo = []
 
  
  //definir personaje
@@ -271,6 +276,18 @@ class Piedra{
     let intervalEnemigos
     function iniciarJuego(){
 
+        personaje.vidas= 3;
+        enemigos = []
+        piedrasArreglo = []
+        explosionArreglo = []
+        pizzaArreglo = []
+        personaje.puntuacion = 0
+        timer = 0
+        timer1 = 0
+        gameOver.classList.add("noShow1")
+        personaje.posicionX = 40
+        personaje.posicionY = 450
+
         intervalId = setInterval(()=>{
             //Borra el lienzo en cada update
             ctx.clearRect(0,0,1000,600)
@@ -304,18 +321,21 @@ class Piedra{
                     enemigos.splice(indexEnemigo, 1)
                     //Quitar enemigo en el array
                     //con el metodo SPLICE el cual nos pide un arreglo y la cantidad a quitar
-                    if (enemigo.posicionX < 0){ 
-                    enemigos.splice(posicionEnemigo, 1)
-                    }
+                    
+                    
 
                     // //Preguntar si sigue vivo
                     if (personaje.vidas == 0){
                         //Aqui va el Game Over
-                        alert("GAME OVER")
-                        console.log("Se murio");
+                        clearInterval(intervalId);
+                        clearInterval(intervalEnemigos);
+                        gameOver.classList.remove("noShow1");
                     }
+                    if (enemigo.posicionX < 0){ 
+                        enemigos.splice(posicionEnemigo, 1)
+                        }
                 }
-            })
+            });
 
 
             //Recorrer el arreglo de las pizzas y por cada una dibujar una pizza y agregarla en x

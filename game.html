@@ -9,13 +9,20 @@
     <link rel="stylesheet" href="./styles/game.css">
 </head>
 <body>
-    <!-- <audio controls autoplay loop src="./sounds/bike.mp3">audio</audio> -->
+    <!-- <audio controls autoplay loop src="./sounds/1.mp3">audio</audio> -->
     <div class="fondoGame">
 
     <!-- Canvas -->
         <canvas width="1000" height="600" id="canvas"></canvas>
-        <script src="./scrips/game.js"></script>
+       
     </div>
-
+    <!-- modal -->
+    <div class="gameOver noShow1" id="gameOver">
+        <!-- contenido del modal -->
+        <div class="modal-content">
+            <button onclick="iniciarJuego()">Reiniciar</button>
+        </div>
+    </div>
+    <script src="./scrips/game.js"></script>
 </body>
 </html>

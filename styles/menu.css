@@ -2,16 +2,37 @@
 
 html,body{
     margin: 0;
+    padding: 0;
     height: 100%;
 }
 
 body{
-    background-color: #1e1f23;
+    /*background-color: #1e1f23;*/
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Anton', sans-serif;
+
+    /*animacion del fondo de pantalla*/
+    background-image: linear-gradient(135deg, 
+    #131415, #E5401D, #E5DC1D , 
+    #EE230B, #EE0B83);
+    background-size: 500%;
+    animation: fanimado 10s infinite;
 }
+
+@keyframes fanimado{
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
 
 .center{
     display: flex;

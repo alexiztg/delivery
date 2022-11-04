@@ -5,6 +5,7 @@
     padding: 0;
     font-family: 'Press Start 2P', cursive;
 }
+
 canvas{
     border: 8px solid blue;
     background-image: url("../img/background/1.gif");
@@ -23,8 +24,28 @@ canvas{
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
+    /*animacion del fondo de pantalla*/
+
+    /*
+    background-image: linear-gradient(135deg, 
+    #131415, #E5401D, #7d2dc9 , 
+    #EE230B, #ee0b0b);
+    background-size: 500%;
+    animation: fanimado 10s infinite;
+}
+@keyframes fanimado{
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+*/
 
 .gameOver{
     width: 54%;

@@ -19,17 +19,39 @@
             <a class="letra" href="game.html">Nueva Partida</a>
             <h1>🚲</h1>
         </button>
-        <button class="box">
+        <button class="box" id="btn">
             <h1>📝</h1>
-            <a class="letra" href="game.html">Instrucciones</a>
+            <a class="letra" >Instrucciones</a>
             <h1>📝</h1>
         </button>
-        <button class="box">
+        <button class="box" id="btn1"">
             <h1>⚠️</h1>
-            <a class="letra" href="game.html">Creditos</a>
+            <a class="letra">Creditos</a>
             <h1>⚠️</h1>
         </button>
           
     </div>
+    <!-- modal Instrucciones-->
+    <div class="gameOver noShow" id="instrucciones">
+    <!-- contenido del modal -->
+    <div class="modal-content center">
+        <img class="center" src="./img/instrucciones.png" class="columna">
+        <button onclick="window.location.href='index.html';" class="columna-doble box">
+            <a class="letra">Regresar</a>
+        </button>
+    </div>    
+    </div>
+
+    <!-- modal Creditos-->
+    <div class="gameOver noShow" id="creditos">
+        <!-- contenido del modal -->
+        <div class="modal-content center">
+            <a class="letra">Power by Alexis Tellez</a>
+            <button onclick="window.location.href='index.html';" class="columna-doble box">
+                <a class="letra">Regresar</a>
+            </button>
+        </div>    
+        </div>
+    <script src="./scrips/index.js"></script>
 </body>
 </html>

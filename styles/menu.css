@@ -176,4 +176,38 @@ h2{
 }
 
 
+.gameOver{
+    width: 54%;
+    margin-left: 23%;
+    margin-top: 8%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 50px;
+    height: 67vh;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.noShow{
+    display: none;
+}
+
+.modal-content{
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
